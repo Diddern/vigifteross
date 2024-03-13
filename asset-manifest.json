@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/vigifteross/static/css/main.5afbb391.css",
+    "main.js": "/vigifteross/static/js/main.93592d0d.js",
+    "static/js/453.7b10cda5.chunk.js": "/vigifteross/static/js/453.7b10cda5.chunk.js",
+    "static/media/champagne.jpg": "/vigifteross/static/media/champagne.7e5deb87adf0c22c4396.jpg",
+    "index.html": "/vigifteross/index.html",
+    "main.5afbb391.css.map": "/vigifteross/static/css/main.5afbb391.css.map",
+    "main.93592d0d.js.map": "/vigifteross/static/js/main.93592d0d.js.map",
+    "453.7b10cda5.chunk.js.map": "/vigifteross/static/js/453.7b10cda5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5afbb391.css",
+    "static/js/main.93592d0d.js"
+  ]
+}
