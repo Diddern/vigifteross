@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+const calculateCountdown = (weddingDate) => {
+  const currentDate = new Date();
+  const timeDifference = weddingDate - currentDate;
+
+  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+  return `${days} dager ${hours} timer ${minutes} minutter`;
+};
+
 const App = () => {
-  const weddingDate = new Date('2025-06-21T00:00:00');
-  const [countdown, setCountdown] = useState(calculateCountdown());
+  const weddingDate = useMemo(() => new Date('2025-06-21T00:00:00'), []);
+  const [countdown, setCountdown] = useState(calculateCountdown(weddingDate));
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCountdown(calculateCountdown());
+      setCountdown(calculateCountdown(weddingDate));
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
-
-  function calculateCountdown() {
-    const currentDate = new Date();
-    const timeDifference = weddingDate - currentDate;
-
-    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-
-    return `${days} dager ${hours} timer ${minutes} minutter`;
-  }
+  }, [weddingDate]);
 
   const scrollToForm = () => {
     document.getElementById('rsvpForm').scrollIntoView({ behavior: 'smooth' });
