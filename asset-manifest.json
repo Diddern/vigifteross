@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/vigifteross/static/css/main.5afbb391.css",
-    "main.js": "/vigifteross/static/js/main.cf5341bc.js",
+    "main.css": "/vigifteross/static/css/main.db227df8.css",
+    "main.js": "/vigifteross/static/js/main.accade19.js",
     "static/js/453.7b10cda5.chunk.js": "/vigifteross/static/js/453.7b10cda5.chunk.js",
     "static/media/champagne.jpg": "/vigifteross/static/media/champagne.7e5deb87adf0c22c4396.jpg",
     "index.html": "/vigifteross/index.html",
-    "main.5afbb391.css.map": "/vigifteross/static/css/main.5afbb391.css.map",
-    "main.cf5341bc.js.map": "/vigifteross/static/js/main.cf5341bc.js.map",
+    "main.db227df8.css.map": "/vigifteross/static/css/main.db227df8.css.map",
+    "main.accade19.js.map": "/vigifteross/static/js/main.accade19.js.map",
     "453.7b10cda5.chunk.js.map": "/vigifteross/static/js/453.7b10cda5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5afbb391.css",
-    "static/js/main.cf5341bc.js"
+    "static/css/main.db227df8.css",
+    "static/js/main.accade19.js"
   ]
 }
