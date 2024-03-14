@@ -43,12 +43,38 @@ body {
   overflow-x: hidden;
 }
 
+h1 {
+  margin: 1em;
+}
+
 #splash {
   background: url('/public/champagne.jpg') no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
 }
 
-#rsvpButton {
-  margin-top: 20px;
+.rsvp-btn {
+  padding: 15px 0;
+  border-radius: 3px;
+  width: 100%;
+  font-size: 13px;
+}
+
+.btn-accent {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn-large {
+  font-size: 24px;
+  /* Add additional styles for larger buttons if needed */
+}
+
+
+#rsvpForm {
+  text-align: center;
+}
+
+.form-group {
+  text-align: left;
 }
