@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/vigifteross/static/css/main.db227df8.css",
-    "main.js": "/vigifteross/static/js/main.accade19.js",
-    "static/js/453.7b10cda5.chunk.js": "/vigifteross/static/js/453.7b10cda5.chunk.js",
-    "static/media/champagne.jpg": "/vigifteross/static/media/champagne.7e5deb87adf0c22c4396.jpg",
-    "index.html": "/vigifteross/index.html",
-    "main.db227df8.css.map": "/vigifteross/static/css/main.db227df8.css.map",
-    "main.accade19.js.map": "/vigifteross/static/js/main.accade19.js.map",
-    "453.7b10cda5.chunk.js.map": "/vigifteross/static/js/453.7b10cda5.chunk.js.map"
+    "main.css": "/static/css/main.8490181b.css",
+    "main.js": "/static/js/main.8f363c7d.js",
+    "static/js/453.7b10cda5.chunk.js": "/static/js/453.7b10cda5.chunk.js",
+    "static/media/champagne.jpg": "/static/media/champagne.7e5deb87adf0c22c4396.jpg",
+    "index.html": "/index.html",
+    "main.8490181b.css.map": "/static/css/main.8490181b.css.map",
+    "main.8f363c7d.js.map": "/static/js/main.8f363c7d.js.map",
+    "453.7b10cda5.chunk.js.map": "/static/js/453.7b10cda5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.db227df8.css",
-    "static/js/main.accade19.js"
+    "static/css/main.8490181b.css",
+    "static/js/main.8f363c7d.js"
   ]
 }
