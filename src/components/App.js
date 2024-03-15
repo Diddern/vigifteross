@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import '../assets/css/App.css';
 import RSVPForm from "./RSVPForm";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const calculateCountdown = (weddingDate) => {
   const currentDate = new Date();
@@ -13,6 +15,13 @@ const calculateCountdown = (weddingDate) => {
   const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
   return `${days} dager ${hours} timer ${minutes} minutter og ${seconds} sekunder`;
+};
+
+const scrollDown = () => {
+  window.scrollBy({
+    top: window.innerHeight,
+    behavior: 'smooth',
+  });
 };
 
 const App = () => {
@@ -35,13 +44,17 @@ const App = () => {
       <div>
         <div id="splash" className="d-flex flex-column align-items-center justify-content-center text-white">
           <h1>Helga og Didrik gifter seg</h1>
-          <h1>21.06.2025 kl 12:00</h1>
+          <h3>21.06.2025 kl 12:00</h3>
 
-          <h2 id="countdown" className="display-4 mb-4">Det er om {countdown}</h2>
+          <h2 id="countdown" className="d-flex flex-column align-items-center justify-content-center text-white">Det er om {countdown}</h2>
 
-          <button className="btn btn-accent btn-large rsvp-btn" onClick={scrollToForm}>
-            RSVP Nå
+          <button className="rsvp-btn" onClick={scrollToForm}>
+            RSVP
           </button>
+        </div>
+
+        <div className="scroll-down-arrow fa-2x" onClick={scrollDown}>
+          <FontAwesomeIcon icon={faAngleDown }/>
         </div>
 
         <div id="rsvpForm" className="container mt-5">
