@@ -2,37 +2,73 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background-color: rgba(200, 200, 200, 0.5); /* Light gray background with some transparency */
 }
 
 h1 {
   margin: 1em;
 }
+
 h2 {
-  margin: 2em;
-  text-align: center;
+  margin: 1.4em;
 }
+
 h3 {
-  text-align: center;
+  font-size: 18px;
+}
+
+p {
+  margin-bottom: 20px; /* Adjust the margin to increase or decrease the space */
 }
 
 #splash {
-  background: url('/public/champagne.jpg') no-repeat center center fixed;
-  background-size: cover;
+  position: relative;
+  overflow: hidden;
   height: 100vh;
 }
+
+#splash .page-header-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: 50% 25%;
+  z-index: -1;
+}
+
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin-top: 25%;
+  height: 100%;
+  color: #fff;
+}
+
+.about-content {
+  align-items: center;
+  text-align: center;
+}
+
 .rsvp-btn {
   font-size: 20px;
   padding: 10px 20px;
-  border-radius: 50px; /* Rounded corners */
-  border: 0.25em solid #e8ca6f;
-  color: #e8ca6f;
+  border-radius: 50px;
+  border: 0.25em solid #fff;
+  color: #fff;
   background-color: transparent;
   cursor: pointer;
 }
 
 .rsvp-btn:hover {
-  color: #fff; /* Change text color on hover */
-  background: #e8ca6f;
+  color: #fff;
+  background: #004596;
+  border: 0.25em solid #004596;
+
 }
 
 #rsvpForm {
@@ -43,7 +79,61 @@ h3 {
   text-align: left;
 }
 
+.card {
+  background-color: rgba(220, 220, 220, 0);
+  border: none;
+}
+
+.card-body form {
+  padding: 20px;
+}
+
+.card-body form .form-group {
+  margin-bottom: 20px;
+}
+
+.card-body h2 {
+  color: #333;
+}
+
+.praktiskinfo-container {
+  justify-content: center;
+}
+
+.praktiskinfo-content {
+  text-align: center;
+  max-width: 1000px;
+  margin: auto;
+  word-break: break-all;
+}
+
+.praktiskinfo-text {
+  margin-bottom: 2em;
+}
+
+.overnatting-container {
+  justify-content: center;
+}
+
+.overnatting-content {
+  text-align: center;
+  max-width: 1000px;
+  margin: auto;
+  word-break: break-all;
+}
+
+.overnatting-text {
+  margin-bottom: 2em;
+}
+
+.extra-space {
+  height: 20px; /* Adjust the height to increase or decrease the space */
+}
+
 .scroll-down-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   color: #fff;
   bottom: 20px;
@@ -55,12 +145,12 @@ h3 {
 
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
+    transform: translate(-50%, 0); /* Only animate vertical movement */
   }
   40% {
-    transform: translateY(-20px);
+    transform: translate(-50%, -20px); /* Adjust vertical position */
   }
   60% {
-    transform: translateY(-10px);
+    transform: translate(-50%, -10px); /* Adjust vertical position */
   }
 }
