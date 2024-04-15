@@ -3,10 +3,10 @@ import axios from 'axios';
 
 const RSVPForm = () => {
     const [formData, setFormData] = useState({
-        name: '',
-        attending: '', // 'true' for 'Ja, vi kommer' and 'false' for 'Nei, vi kommer ikke'
-        companionName: '',
-        dietaryPreferences: '',
+        navn: '',
+        kommer: 'true', // 'true' for 'Ja, vi kommer' and 'false' for 'Nei, vi kommer ikke'
+        følge: '',
+        matpreferanser: '',
         additionalField: '',
     });
     const [errors, setErrors] = useState({});
@@ -19,21 +19,11 @@ const RSVPForm = () => {
             [name]: type === 'checkbox' ? checked : value,
         }));
     };
-    const handleRadioChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
 
     const validateForm = () => {
         const errors = {};
-        if (!formData.name.trim()) {
-            errors.name = 'Navn is required';
-        }
-        if (formData.attending !== 'true' && formData.attending !== 'false') {
-            errors.attending = 'Vi kommer field is required';
+        if (!formData.navn.trim()) {
+            errors.navn = 'Navn is required';
         }
         setErrors(errors);
         return Object.keys(errors).length === 0;
@@ -41,10 +31,9 @@ const RSVPForm = () => {
 
 
     const handleSubmit = (e) => {
-        e.preventDefault();
         const isValid = validateForm();
         if (isValid) {
-            onSubmit();
+            onSubmit(e); // Pass the event parameter to onSubmit
         }
     };
 
@@ -52,10 +41,15 @@ const RSVPForm = () => {
         e.preventDefault();
 
         try {
-            // Replace with your actual Airtable details
-            const personalAccessToken = 'YOUR_AIRTABLE_PERSONAL_ACCESS_TOKEN';
-            const baseId = 'YOUR_AIRTABLE_BASE_ID';
-            const table = 'RSVP';
+            const personalAccessToken = process.env.REACT_APP_AIRTABLE_TOKEN;
+            const baseId = process.env.REACT_APP_AIRTABLE_BASE_ID;
+            console.log("baseId", process.env.REACT_APP_AIRTABLE_BASE_ID)
+
+            if (!personalAccessToken || !baseId) {
+                console.error('Error: Missing environment variables. Please make sure AIRTABLE_TOKEN and AIRTABLE_BASE_ID are set.');
+                process.exit(1); // Exit the script with a non-zero status code indicating failure
+            }
+            const table = 'tblsjJ8NrR5dMPLam';
 
             const apiUrl = `https://api.airtable.com/v0/${baseId}/${table}`;
             const headers = {
@@ -63,7 +57,18 @@ const RSVPForm = () => {
                 Authorization: `Bearer ${personalAccessToken}`,
             };
 
-            const response = await axios.post(apiUrl, { fields: formData }, { headers });
+            const kommerValue = formData.kommer === 'true';
+
+            // Map form field names to Airtable field names
+            const mappedFormData = {
+                'Navn': formData.navn,
+                'Navn på følge': formData.følge,
+                'Kommer': kommerValue,
+                'Matpreferanser': formData.matpreferanser,
+            };
+
+            const response = await axios.post(apiUrl, { fields: mappedFormData }, { headers });
+
 
             if (response.status === 200 || response.status === 201) {
                 // Handle success or redirect to a thank you page
@@ -85,65 +90,55 @@ const RSVPForm = () => {
                 <div className="card">
                     <div className="card-body">
                         <div>
-                            {hasError && <div>Something went wrong with the RSVPForm.</div>}
+                            {hasError && <div>Oh no! Noe gikk galt ved innsending, vår beste IT-utvikler er på saken.</div>}
 
                             <form onSubmit={handleSubmit}>
                                 <div className="form-group">
-                                    <label htmlFor="name">Navn</label>
+                                    <label htmlFor="navn">Navn:</label>
                                     <input
                                         type="text"
-                                        className={`form-control ${errors.name ? 'is-invalid' : ''}`}
-                                        name="name"
-                                        value={formData.name}
+                                        className={`form-control ${errors.navn ? 'is-invalid' : ''}`}
+                                        name="navn"
+                                        value={formData.navn}
                                         onChange={handleChange}
                                     />
                                     {errors.name && (
-                                        <small className="invalid-feedback">{errors.name}</small>
+                                        <small className="invalid-feedback">{errors.navn}</small>
                                     )}
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="companionName">Navn på følge</label>
+                                    <label htmlFor="følge">Navn på følge:</label>
                                     <input
                                         type="text"
                                         className="form-control"
-                                        name="companionName"
-                                        onChange={(e) => handleChange('companionName', e.target.value)}
+                                        name="følge"
+                                        onChange={handleChange}
                                     />
                                 </div>
 
                                 <div className="form-group">
-                                    <label>Vi kommer</label>
+                                    <label>Kan dere komme?</label>
                                     <div className="form-check">
                                         <input
-                                            type="radio"
-                                            className={`form-check-input ${errors.attending ? 'is-invalid' : ''}`}
-                                            name="attending"
-                                            value="true"
-                                            checked={formData.attending === 'true'}
-                                            onChange={handleRadioChange}
+                                            type="checkbox"
+                                            className={`form-check-input ${errors.kommer ? 'is-invalid' : ''}`}
+                                            name="kommer"
+                                            checked={formData.kommer === 'true'}
+                                            onChange={(e) => handleChange({
+                                                target: {
+                                                    name: 'kommer',
+                                                    value: e.target.checked.toString()
+                                                }
+                                            })}
                                         />
-                                        <label className="form-check-label" htmlFor="attending">
-                                            Ja, vi kommer
-                                        </label>
+                                        <label className="form-check-label" htmlFor="kommer">Ja 🤩🎉🤩</label>
                                     </div>
-                                    <div className="form-check">
-                                        <input
-                                            type="radio"
-                                            className={`form-check-input ${errors.attending ? 'is-invalid' : ''}`}
-                                            name="attending"
-                                            value="false"
-                                            checked={formData.attending === 'false'}
-                                            onChange={handleRadioChange}
-                                        />
-                                        <label className="form-check-label" htmlFor="notAttending">
-                                            Nei, vi kommer ikke
-                                        </label>
-                                    </div>
-                                    {errors.attending && (
-                                        <small className="invalid-feedback">{errors.attending}</small>
+                                    {errors.kommer && (
+                                        <small className="invalid-feedback">{errors.kommer}</small>
                                     )}
                                 </div>
+
 
                                 <div className="form-group">
                                     <label htmlFor="dietaryPreferences">Matpreferanser</label>
@@ -155,9 +150,7 @@ const RSVPForm = () => {
                                     />
                                 </div>
 
-                                <button type="submit" className="btn btn-primary">
-                                    Submit RSVP
-                                </button>
+                                <button type="submit" className="btn btn-primary">Send inn</button>
                             </form>
                         </div>
                     </div>
