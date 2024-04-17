@@ -7,10 +7,12 @@ const RSVPForm = () => {
         kommer: 'true', // 'true' for 'Ja, vi kommer' and 'false' for 'Nei, vi kommer ikke'
         følge: '',
         matpreferanser: '',
-        additionalField: '',
+        email: '',
+
     });
     const [errors, setErrors] = useState({});
     const [hasError, setHasError] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null); // State to track submit status
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -23,7 +25,10 @@ const RSVPForm = () => {
     const validateForm = () => {
         const errors = {};
         if (!formData.navn.trim()) {
-            errors.navn = 'Navn is required';
+            errors.navn = 'Navn er påkrevd';
+        }
+        if(!formData.email.trim()) {
+            errors.email = "E-post er påkrevd"
         }
         setErrors(errors);
         return Object.keys(errors).length === 0;
@@ -33,12 +38,13 @@ const RSVPForm = () => {
     const handleSubmit = (e) => {
         const isValid = validateForm();
         if (isValid) {
-            onSubmit(e); // Pass the event parameter to onSubmit
+            onSubmit(e);
         }
     };
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        setSubmitStatus('submitting');
 
         try {
             const personalAccessToken = process.env.REACT_APP_AIRTABLE_TOKEN;
@@ -63,24 +69,31 @@ const RSVPForm = () => {
                 'Navn på følge': formData.følge,
                 'Kommer': kommerValue,
                 'Matpreferanser': formData.matpreferanser,
+                'Epost': formData.email
             };
 
             const response = await axios.post(apiUrl, { fields: mappedFormData }, { headers });
 
 
             if (response.status === 200 || response.status === 201) {
-                // Handle success or redirect to a thank you page
-                console.log('RSVP submitted successfully!');
+                setSubmitStatus('success');
+                console.log('Takk for at du meldte fra! Vi gleder oss masse ❤️');
             } else {
                 // Handle non-successful response
-                console.error('Error submitting RSVP:', response.statusText);
+                console.error('Feil ved innsending:', response.statusText);
+                setSubmitStatus('error');
             }
+
         } catch (error) {
             // Handle error
-            console.error('Error submitting RSVP:', error);
+            console.error('Feil ved innsending:', error);
             setHasError(true);
+            setSubmitStatus('error');
         }
     };
+
+    const submitButtonText = submitStatus === 'success' ? 'Takk, vi gleder oss ❤️' : 'Send inn';
+    let submitButtonStatus = submitStatus === 'submitting' || submitStatus === 'success'
 
     return (
         <div id="rsvpFrom" className="container mt-5">
@@ -145,13 +158,23 @@ const RSVPForm = () => {
                                         <label htmlFor="dietaryPreferences">Matpreferanser</label>
                                         <textarea
                                             className="form-control"
-                                            name="dietaryPreferences"
-                                            value={formData.dietaryPreferences}
+                                            name="matpreferanser"
+                                            value={formData.matpreferanser}
                                             onChange={handleChange}
                                         />
                                     </div>
 
-                                    <button type="submit" className="btn btn-primary">Send inn</button>
+                                    <div className="form-group">
+                                        <label htmlFor="email">E-postadresse</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            name="email"
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+
+                                    <button type="submit" disabled={submitButtonStatus} className="btn btn-primary">{submitButtonText}</button>
                                 </form>
                             </div>
                         </div>
