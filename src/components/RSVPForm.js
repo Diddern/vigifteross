@@ -96,8 +96,8 @@ const RSVPForm = () => {
     let submitButtonStatus = submitStatus === 'submitting' || submitStatus === 'success'
 
     return (
-        <div id="rsvpFrom" className="container mt-5">
-            <h3>RSVP</h3>
+        <div id="rsvpForm" className="container mt-5">
+            <h2>RSVP</h2>
             <p>Gi oss beskjed om du kommer</p>
             <div className="row justify-content-center">
                 <div className="col-md-8">

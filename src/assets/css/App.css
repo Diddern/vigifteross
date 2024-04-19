@@ -10,7 +10,8 @@ h1 {
 }
 
 h2 {
-  margin: 1.4em;
+  margin: 1em;
+  text-align: center;
 }
 
 h3 {
@@ -40,14 +41,25 @@ p {
 }
 
 .splash-content {
-  display: flex;
+  position: relative; /* Add this */
   flex-direction: column;
   align-items: center;
   text-align: center;
   justify-content: center;
-  margin-top: 25%;
+  margin-top: 55%;
   height: 100%;
   color: #fff;
+}
+
+@media (max-width: 750px) {
+    .splash-content {
+        margin-top: 80%; /* Change margin-top for screens less than 750px wide */
+    }
+}
+@media (min-width: 1660px) {
+  .splash-content {
+    margin-top: 40%; /* Change margin-top for screens wider than 1660px */
+  }
 }
 
 .about-content {
@@ -76,12 +88,9 @@ p {
   text-align: center;
 }
 
-#rsvpFrom > h3 {
-  text-align: center;
-}
-
 #rsvpFrom > p {
   text-align: center;
+  padding: 0px;
 }
 
 .form-group {
@@ -91,10 +100,6 @@ p {
 .card {
   background-color: rgba(220, 220, 220, 0);
   border: none;
-}
-
-.card-body form {
-  padding: 20px;
 }
 
 .card-body form .form-group {
@@ -171,4 +176,18 @@ p {
   60% {
     transform: translate(-50%, -10px); /* Adjust vertical position */
   }
+}
+
+.PwContainer {
+  background-color: black;
+  color: gold;
+  display: flex;
+  flex-direction: column; /* Arrange children in a column */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  /* Reset inherited styles from body */
+  margin: 0;
+  padding: 0;
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 
-const SplashScreen = ({ imageUrl, children }) => {
+const SplashScreen = ({ imageUrl, scrollToRSVPForm }) => {
 
     const calculateCountdown = (weddingDate) => {
         const currentDate = new Date();
@@ -26,10 +26,6 @@ const SplashScreen = ({ imageUrl, children }) => {
         return () => clearInterval(interval);
     }, [weddingDate]);
 
-    const scrollToForm = () => {
-        document.getElementById('rsvpForm').scrollIntoView({ behavior: 'smooth' });
-    };
-
 
     return (
         <div id="splash">
@@ -40,7 +36,7 @@ const SplashScreen = ({ imageUrl, children }) => {
                 <h2 id="countdown"
                     className="d-flex flex-column align-items-center justify-content-center text-white">Det er
                     om {countdown}</h2>
-                <button className="rsvp-btn" onClick={scrollToForm}>RSVP</button>
+                <button className="rsvp-btn" onClick={scrollToRSVPForm}>RSVP</button>
             </div>
         </div>
     );
