@@ -63,8 +63,14 @@ p {
 }
 
 .about-content {
+  justify-content: center;
   align-items: center;
+}
+
+.about-content {
   text-align: center;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .rsvp-btn {
