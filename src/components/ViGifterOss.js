@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import SplashScreen from './SplashScreen';
 import Om from "./About";
 import PraktiskInfo from "./PraktiskInfo"
