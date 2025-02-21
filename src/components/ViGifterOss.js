@@ -4,6 +4,7 @@ import Om from "./About";
 import PraktiskInfo from "./PraktiskInfo"
 import RSVPForm from "./RSVPForm";
 import Overnatting from "./Overnatting";
+import Ønskeliste from "./Ønskeliste"
 import Kart from "./Kart";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
@@ -38,7 +39,8 @@ const ViGifterOss = () => {
             </div>
             <Om/>
             <PraktiskInfo/>
-            <RSVPForm/>
+            {/*<RSVPForm/>*/}
+            <Ønskeliste/>
             <Overnatting/>
             <Kart/>
         </div>

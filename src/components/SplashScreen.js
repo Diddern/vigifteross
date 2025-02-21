@@ -36,7 +36,7 @@ const SplashScreen = ({ imageUrl, scrollToRSVPForm }) => {
                 <h2 id="countdown"
                     className="d-flex flex-column align-items-center justify-content-center text-white">Det er
                     om {countdown}</h2>
-                <button className="rsvp-btn" onClick={scrollToRSVPForm}>RSVP</button>
+                {/*<button className="rsvp-btn" onClick={scrollToRSVPForm}>RSVP</button>*/}
             </div>
         </div>
     );

@@ -7,8 +7,9 @@ const App = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<PwPage />} />
-                <Route path="/vigifteross" element={<ViGifterOss />} />
+                {/*<Route path="/" element={<PwPage />} />*/}
+                <Route path="/" element={<ViGifterOss />} />
+                {/* <Route path="/vigifteross" element={<ViGifterOss />} /> */}
             </Routes>
         </Router>
     );
