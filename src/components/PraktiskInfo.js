@@ -29,8 +29,8 @@ const PraktiskInfo = () => {
                     </p>
                     <h3>Taler</h3>
                     <p>
-                        Ønsker du å holde tale eller et annet innslag?<br/> Ta kontakt med toastmaster Henrik
-                        Sivertsgård på tlf: <a href="tel:04799528979">995 28 979</a>.
+                        Alle taler eller innslag tas i mot med takk, men fint om du melder til toastmaster Henrik
+                        Sivertsgård på tlf: <a href="tel:04799528979">995 28 979</a>. innen 31. mai.
                     </p>
                 </div>
             </div>
